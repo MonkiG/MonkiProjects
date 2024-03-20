@@ -1,4 +1,4 @@
-# Personal Vanilla JS Projects
+# Personal Vanilla JS/TS Projects
 
 This repository is dedicated to tracking my progress with vanilla JavaScript by completing small projects that use its features
 

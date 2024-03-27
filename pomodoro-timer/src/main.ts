@@ -1,5 +1,0 @@
-import './style.css'
-import './components/AppFooter'
-import './components/AppHeader'
-import './components/timer/TimerButtons'
-import './components/timer/AppTimer'

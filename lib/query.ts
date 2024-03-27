@@ -1,9 +1,9 @@
 export const $ = (
   element: string,
-  context = document
+  context: any = document
 ): HTMLElement | null => context.querySelector(element)
 
 export const $$ = (
   element: string,
-  context: Element | Document = document
+  context: any = document
 ): NodeListOf<Element> | null => context.querySelectorAll(element)

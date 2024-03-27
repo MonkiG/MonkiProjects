@@ -1,4 +1,4 @@
-import ShadowError from '../../Errors/ShadowError'
+import ShadowError from '../../../lib/errors/ShadowError'
 import { type timersTypes } from './types'
 
 export default class TimerButtons extends HTMLElement {

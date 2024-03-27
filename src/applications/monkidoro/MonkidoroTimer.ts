@@ -1,7 +1,8 @@
-import ShadowError from '../../Errors/ShadowError'
+import AttributeError from '../../../lib/errors/AttributeError'
+import ShadowError from '../../../lib/errors/ShadowError'
 import { type Timers, type timersTypes } from './types'
 
-class AppTimer extends HTMLElement {
+export default class MonkidoroTimer extends HTMLElement {
   timers: Timers = {
     pomodoro: {
       name: 'pomodoro',
@@ -39,16 +40,16 @@ class AppTimer extends HTMLElement {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: #fff4;
       padding: 2%;
-      width: 50%;
+      width: 90%;
       height: 50%;
       border-radius: 2%
     }
 
     span {
       display: block;
-      font-size: 3em;
+      font-size: 4em;
       text-align: center;
       padding: 5%
     }
@@ -75,7 +76,7 @@ class AppTimer extends HTMLElement {
 
     .active {
       font-weight: bold;
-      background: none rgba(0, 0, 0, 0.25);
+      background: none rgba(0, 0, 0, 0.1);
     }
   `
   connectedCallback (): void {
@@ -106,7 +107,7 @@ class AppTimer extends HTMLElement {
         this.isActive = false
         initButton.innerHTML = 'Start'
         const { timer } = button.dataset
-        if (!timer) throw new Error('buttons doesn\'t have the timer dataset')
+        if (!timer) throw new AttributeError()
         this.activeTimer = timer as timersTypes
         this.time = this.timers[timer as timersTypes].time * 60
         // spanTime.innerHTML = this.#formatTime(this.time)
@@ -135,9 +136,8 @@ class AppTimer extends HTMLElement {
 
   render (): void {
     if (!this.shadowRoot) throw new ShadowError()
-    console.log(this.activeTimer)
     this.shadowRoot.innerHTML = /* Html */`
-      <style>${AppTimer.Styles}</style>
+      <style>${MonkidoroTimer.Styles}</style>
         <section>
           <div>
             <button ${this.activeTimer === 'pomodoro' ? 'class="active"' : ''} data-timer="pomodoro">Pomodoro</button>
@@ -154,4 +154,4 @@ class AppTimer extends HTMLElement {
   }
 }
 
-customElements.define('app-timer', AppTimer)
+customElements.define('monkidoro-timer', MonkidoroTimer)

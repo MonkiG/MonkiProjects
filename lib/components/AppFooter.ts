@@ -1,4 +1,4 @@
-import ShadowError from '../Errors/ShadowError'
+import ShadowError from '../errors/ShadowError'
 
 class AppFooter extends HTMLElement {
   constructor () {

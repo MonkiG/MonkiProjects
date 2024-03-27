@@ -1,10 +1,13 @@
-import { $ } from '../query'
+import { $ } from '../../../lib/query'
 
 class DraggableContainer extends HTMLElement {
-//   constructor () {
-//     super()
-//     this.setAttribute('id', 'dragend')
-//   }
+  parentShadow?: ParentNode | null
+  constructor () {
+    super()
+    this.parentShadow = this.parentElement!.parentNode
+
+    if (!this.parentShadow) throw new Error('No element found')
+  }
 
   handleEvent (event: Event): void {
     const type = event.type
@@ -19,8 +22,8 @@ class DraggableContainer extends HTMLElement {
     if (!dataTransfer) throw new Error('No data transfer found')
 
     const draggedElementId = dataTransfer.getData('text/plain')
-    const draggedElement = $(`[data-id="${draggedElementId}"]`)!
-
+    const draggedElement = $(`[data-id="${draggedElementId}"]`, this.parentShadow!)
+    if (!draggedElement) throw new Error('No element found')
     target.appendChild(draggedElement)
   }
 

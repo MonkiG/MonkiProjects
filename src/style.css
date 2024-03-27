@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; */
+}
+hr {
+    /* border: .5px solid rgba(147, 37, 37, 0.9); */
+    margin: 1% 15%;
+}
+
+#items-draggables{
+    width: 50%;
+    height: 50%;
+    border: 1px solid white;
+    margin: 0 4px 0 4px;
+    padding: 0.5%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    place-items: center;
+  }
+  
+  draggable-element{
+    text-align: left; 
+    border: 1px solid red;
+    cursor: move;
+  }

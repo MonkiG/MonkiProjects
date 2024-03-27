@@ -1,14 +1,19 @@
-import ShadowError from '../Errors/ShadowError'
+import AttributeError from '../errors/AttributeError'
+import ShadowError from '../errors/ShadowError'
 
 class AppHeader extends HTMLElement {
+  title: string
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
+    this.title = this.dataset.title ?? ''
+    if (!this.title) throw new AttributeError()
   }
 
   static Styles = /* Css */`
     :host {
       width: 100%;
+      text-align: center;
     }
 
     header {
@@ -23,10 +28,6 @@ class AppHeader extends HTMLElement {
       margin: 0;
     }
 
-    hr {
-        border: .5px solid rgba(147, 37, 37, 0.9);
-        margin: 1% 15%;
-    }
   `
   connectedCallback (): void {
     this.render()
@@ -37,8 +38,8 @@ class AppHeader extends HTMLElement {
     this.shadowRoot.innerHTML = /* Html */`
         <style>${AppHeader.Styles}</style>
         <header>
-            <h1>🍌Monki Pomodoro timer 🍅</h1>
-            <hr/>
+            <h1>${this.title}</h1>
+            <slot name="children"></slot>
         </header>
     `
   }

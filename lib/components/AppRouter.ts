@@ -14,7 +14,13 @@ export default class AppRouter extends HTMLElement {
     super()
     this.routes = (this.dataset.routes ? JSON.parse(this.dataset.routes) : routes) || []
     this.path = window.location.pathname
-    if (!this.routes.length) throw new Error('Element should have an array of Routes')
+  }
+
+  static observedAttributes = ['data-routes']
+
+  attributeChangedCallback (nameV: string, _oldV: string, newV: string): void {
+    if (nameV === 'data-routes') this.routes = JSON.parse(newV)
+    this.init()
   }
 
   connectedCallback (): void {

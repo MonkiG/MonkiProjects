@@ -1,11 +1,5 @@
-type link = `/${string}`
-type element = `<${string}></${string}>`
+import { type Routes } from '../types'
 
-interface Routes {
-  link: link
-  element: element
-}
-// hacer un observer
 export default class AppRouter extends HTMLElement {
   routes: Routes[]
   path: string

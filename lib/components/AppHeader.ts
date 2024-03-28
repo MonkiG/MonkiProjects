@@ -14,6 +14,7 @@ class AppHeader extends HTMLElement {
     :host {
       width: 100%;
       text-align: center;
+      position: relative;
     }
 
     header {
@@ -38,7 +39,8 @@ class AppHeader extends HTMLElement {
     this.shadowRoot.innerHTML = /* Html */`
         <style>${AppHeader.Styles}</style>
         <header>
-            <h1>${this.title}</h1>
+            <h1>${this.title} </h1>
+            <slot name="logo"></slot>
             <slot name="children"></slot>
         </header>
     `

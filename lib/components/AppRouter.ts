@@ -22,12 +22,13 @@ export default class AppRouter extends HTMLElement {
   }
 
   // Event for buttons
-  //   onRouteChange (e: Event): void {
-  //     const target = e.target as Window & { location: Location }
-  //     if (!target) return
-  //     const newRoute = target.location.pathname
-  //     this.path = newRoute
-  //   }
+  onRouteChange (e: Event): void {
+    const target = e.target as Window & { location: Location }
+    if (!target) return
+    const newRoute = target.location.pathname
+    this.path = newRoute
+    this.init()
+  }
 
   init (): void {
     this.routes.forEach(route => {
@@ -36,8 +37,8 @@ export default class AppRouter extends HTMLElement {
       }
     })
 
-    // window.addEventListener('routechange', this.onRouteChange.bind(this))
-    // window.addEventListener('popstate', this.onRouteChange.bind(this))
+    window.addEventListener('routechange', (e) => { this.onRouteChange(e) })
+    window.addEventListener('popstate', (e) => { this.onRouteChange(e) })
   }
 }
 

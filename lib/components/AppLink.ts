@@ -19,19 +19,37 @@ export default class AppLink extends HTMLElement {
 
   styles = /** Css */`
     :host{
-      border: 1px solid #ffd200;
+      border: 1px solid black;
       border-radius: 3px;
       padding: 0.5rem;
       position: relative;
       font-family: 'Montserrat';
-      cursor: pointeR;
+      cursor: pointer;
+      box-sizing: border-box;
     }
     :host(:hover) {
       background-color: #ffde4430;
     }
     a{
+      display: inline-block;
       text-decoration: none;
-      color: ${this.color ? this.color : 'inherit'};
+      text-align: center;
+      width: 100%;
+      color: ${this.color ? this.color : 'black'};
+    }
+    @media(prefers-color-scheme: dark){
+      a{
+        color: white;
+      }
+
+      :host {
+        border: 1px solid #ffd200;
+      }
+    }
+    @media(530px >= width){
+      :host {
+        padding: 0.5rem 0;
+      }
     }
   `
 
